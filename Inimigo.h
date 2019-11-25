@@ -13,7 +13,7 @@ protected:
 	bool faceRight;
 	
 public:
-	Inimigo(sf::Vector2u imageCount, float switchTime, float speed, const int id);
+	Inimigo(sf::Vector2u imageCount, float switchTime, float speed, const int id, sf::Vector2f posicao);
 	~Inimigo();
 
 	virtual void Update(float deltaTime, sf::Vector2f posicaoJog) = 0;

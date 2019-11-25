@@ -13,7 +13,6 @@ public:
 	~ListaEntidades();
 
 	void incluirEntidade(Entidade* pe);
-	void removerEntidade(int id, int i);
 	void limparLista();
 	void percorrerLista(sf::RenderWindow& janela);
 };

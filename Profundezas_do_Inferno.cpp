@@ -26,7 +26,7 @@ void Profundezas_do_Inferno::InicializarListas()
 	{
 		lPlataformas.incluirPlataforma(new Plataforma(coordenadas));
 		lEntidades.incluirEntidade(lPlataformas.pegarPlataforma(i));
-		coordenadas.x += 50.0f;
+		coordenadas.x += 75.0f;
 	}
 	
 	coordenadas = sf::Vector2f(-200.0f, 200.0f);
@@ -35,7 +35,7 @@ void Profundezas_do_Inferno::InicializarListas()
 	{
 		lPlataformas.incluirPlataforma(new Plataforma(coordenadas));
 		lEntidades.incluirEntidade(lPlataformas.pegarPlataforma(i));
-		coordenadas.x += 50.0f;
+		coordenadas.x += 75.0f;
 	}
 	
 	coordenadas = sf::Vector2f(2000.0f, 450.0f);
@@ -56,7 +56,7 @@ void Profundezas_do_Inferno::InicializarListas()
 		coordenadas.x -= 1900.0f / n_InimCao;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 150.0f);
+	coordenadas = sf::Vector2f(2000.0f, 484.0f);
 
 	for (i = 0; i < n_Pesadelo; i++)
 	{
@@ -65,7 +65,7 @@ void Profundezas_do_Inferno::InicializarListas()
 		coordenadas.x -= 1900.0f / n_Pesadelo;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 450.0f);
+	coordenadas = sf::Vector2f(2000.0f, 160.0f);
 
 	for (i; i < n_Pesadelo + n_Machado; i++)
 	{

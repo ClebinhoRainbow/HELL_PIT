@@ -10,5 +10,7 @@ class Plataforma :
 public:
 	Plataforma(sf::Vector2f position);
 	~Plataforma();
+
+	void onCollision(sf::Vector2f direction) {}
 };
 

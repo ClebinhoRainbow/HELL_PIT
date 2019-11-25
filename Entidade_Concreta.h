@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entidade.h"
+#include "Gerenciador_de_Colisoes.h"
 
 class Entidade_Concreta :
 	public Entidade
@@ -13,5 +14,6 @@ public:
 	~Entidade_Concreta();
 
 	void onCollision(sf::Vector2f direction);
+	Gerenciador_de_Colisoes getCollider() { return Gerenciador_de_Colisoes(corpo); }
 };
 

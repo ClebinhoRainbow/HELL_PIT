@@ -43,6 +43,10 @@ void  ListaInimigos::removerInimigo(int i)
 	for (it = lInimigos.begin(); it != lInimigos.end(); it++)
 	{
 		if (i == j)
-			lInimigos.erase(it);
+		{
+			(*it)->getCorpo().setPosition(sf::Vector2f(10000.0f, 600.0f));
+			it = lInimigos.erase(it);
+		}
+		j++;
 	}
 }

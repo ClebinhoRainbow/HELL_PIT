@@ -16,17 +16,19 @@ void Entrada_Inferno::InicializarListas()
 {
 	sf::Vector2f coordenadas = sf::Vector2f(-200.0f, 500.0f);
 
+	srand(time(NULL));
+
 	int i;
 	int n_InimCao = rand() % 6 + 10;
 	int n_InimBesta = rand() % 6 + 10;
-	int n_Machado = rand() % 6 + 10;
+	int n_Machado = rand() % 6 + 5;
 	int n_Espinho = rand() % 6 + 2;
 
 	for (i = 0; i < 50; i++)
 	{
 		lPlataformas.incluirPlataforma(new Plataforma(coordenadas));
 		lEntidades.incluirEntidade(lPlataformas.pegarPlataforma(i));
-		coordenadas.x += 50.0f;
+		coordenadas.x += 75.0f;
 	}
 
 	coordenadas = sf::Vector2f(-200.0f, 200.0f);
@@ -35,43 +37,43 @@ void Entrada_Inferno::InicializarListas()
 	{
 		lPlataformas.incluirPlataforma(new Plataforma(coordenadas));
 		lEntidades.incluirEntidade(lPlataformas.pegarPlataforma(i));
-		coordenadas.x += 50.0f;
+		coordenadas.x += 75.0f;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 450.0f);
+	coordenadas = sf::Vector2f(3000.0f, 430.0f);
 
 	for (i = 0; i < n_InimBesta; i++)
 	{
 		lInimigos.incluirInimigo(new Besta_Infernal(coordenadas));
 		lEntidades.incluirEntidade(lInimigos.pegarInimigo(i));
-		coordenadas.x -= 1900.0f / n_InimBesta;
+		coordenadas.x -= 2800.0f / n_InimBesta;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 150.0f);
+	coordenadas = sf::Vector2f(3000.0f, 130.0f);
 
 	for (i; i < n_InimBesta + n_InimCao; i++)
 	{
 		lInimigos.incluirInimigo(new Cao_Infernal(coordenadas));
 		lEntidades.incluirEntidade(lInimigos.pegarInimigo(i));
-		coordenadas.x -= 1900.0f / n_InimCao;
+		coordenadas.x -= 2800.0f / n_InimCao;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 150.0f);
+	coordenadas = sf::Vector2f(2800.0f, 460.0f);
 
 	for (i = 0; i < n_Espinho; i++)
 	{
 		lObstaculos.incluirObstaculo(new Espinhos_Infernais(coordenadas));
 		lEntidades.incluirEntidade(lObstaculos.pegarObstaculo(i));
-		coordenadas.x -= 1900.0f / n_Espinho;
+		coordenadas.x -= 3000.0f / n_Espinho;
 	}
 
-	coordenadas = sf::Vector2f(2000.0f, 450.0f);
+	coordenadas = sf::Vector2f(2800.0f, 160.0f);
 
 	for (i; i < n_Espinho + n_Machado; i++)
 	{
 		lObstaculos.incluirObstaculo(new Machado_Infernal(coordenadas));
 		lEntidades.incluirEntidade(lObstaculos.pegarObstaculo(i));
-		coordenadas.x -= 1900.0f / n_Machado;
+		coordenadas.x -= 3000.0f / n_Machado;
 	}
 }
 

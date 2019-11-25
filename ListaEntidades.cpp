@@ -13,17 +13,6 @@ void ListaEntidades::incluirEntidade(Entidade* pe)
 	lEntidades.incluirInfo(pe);
 }
 
-void ListaEntidades::removerEntidade(int id, int i)
-{
-	lEntidades.setNovo();
-
-	while (lEntidades.getNovo())
-	{
-		if ((lEntidades.getNovo()->getInfo()->retornarId()) == id)
-		lEntidades.setProxNovo();
-	}
-}
-
 void ListaEntidades::limparLista()
 {
 	lEntidades.limpar();

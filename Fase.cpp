@@ -9,11 +9,11 @@ Fase::Fase(int n_jog, const int id) :
 	corpo.setSize(sf::Vector2f(960.0f, 540.0f));
 	corpo.setPosition(480.0f, 270.0f);
 	
-	jogadores.push_back(new Dante(sf::Vector2u(10, 3), 0.3f, 130.0f, 200.0f));
+	jogadores.push_back(new Dante(sf::Vector2u(12, 4), 0.3f, 130.0f, 150.0f));
 	lEntidades.incluirEntidade(jogadores[0]);
 	if (n_jogadores == 2)
 	{
-		jogadores.push_back(new Ghierila(sf::Vector2u(10, 3), 0.3f, 130.0f, 200.0f));
+		jogadores.push_back(new Ghierila(sf::Vector2u(12, 4), 0.3f, 130.0f, 200.0f));
 		lEntidades.incluirEntidade(jogadores[1]);
 	}
 }
@@ -80,7 +80,94 @@ void Fase::executarMenuPause(sf::RenderWindow& janela, sf::View& view)
 
 void Fase::checarColisoes()
 {
-	gc.checarColisoes(lEntidades, lInimigos, lObstaculos, lPlataformas, jogadores);
+	sf::Vector2f direcao;
+	bool jaColidiu = false;
+	int i, j;
+	unsigned int k;
+
+	/*
+	for (i = 0; i < lPlataformas.pegarTamanho(); i++)
+	{
+		for (k = 0; k < jogadores.size(); k++)
+		{
+			if (lPlataformas.pegarPlataforma(i)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 1.0f))
+				jogadores[k]->onCollision(direcao);
+		}
+		for (j = 0; j < lInimigos.pegarTamanho(); j++)
+		{
+			if (lPlataformas.pegarPlataforma(i)->getCollider().checkCollision(lInimigos.pegarInimigo(j)->getCorpo(), direcao, 1.0f))
+				lInimigos.pegarInimigo(j)->onCollision(direcao);
+		}
+		for (j = 0; j < lObstaculos.pegarTamanho(); j++)
+		{
+			if (lPlataformas.pegarPlataforma(i)->getCollider().checkCollision(lObstaculos.pegarObstaculo(j)->getCorpo(), direcao, 1.0f))
+				lObstaculos.pegarObstaculo(j)->onCollision(direcao);
+		}
+	}*/
+	for (j = 0; j < lInimigos.pegarTamanho(); j++)
+	{
+		for (k = 0; k < jogadores.size(); k++)
+		{
+			if (lInimigos.pegarInimigo(j)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 1.0f) &&
+				(jogadores[k]->Atacando()))
+			{
+				lInimigos.removerInimigo(j);
+				j--;
+				break;
+			}
+			else if (lInimigos.pegarInimigo(j)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 1.0f) &&
+				!(jogadores[k]->Atacando()))
+			{
+				jogadores[k]->onCollision(direcao);
+				jogadores[k]->reduzirVida();
+				if (jogadores[k]->Morreu())
+				{
+					jogadores.erase(jogadores.begin() + k);
+					k--;
+				}
+			}
+		}
+	}
+	for (j = 0; j < lObstaculos.pegarTamanho(); j++)
+	{
+		for (k = 0; k < jogadores.size(); k++)
+		{
+			jaColidiu = false;
+			if (lObstaculos.pegarObstaculo(j)->retornarId() == 5)
+			{
+				if (lObstaculos.pegarObstaculo(j)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 1.0f))
+				{
+					while (!(jogadores[k]->Morreu()))
+						jogadores[k]->reduzirVida();
+					jogadores.erase(jogadores.begin() + k);
+					k--;
+				}
+			}
+			else if (lObstaculos.pegarObstaculo(j)->retornarId() == 6)
+			{
+				if (lObstaculos.pegarObstaculo(j)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 0.0f))
+					jogadores[k]->reduzirVida();
+			}
+			else
+			{
+				if (lObstaculos.pegarObstaculo(j)->getCollider().checkCollision(jogadores[k]->getCorpo(), direcao, 1.0f))
+				{
+					if (jaColidiu)
+					{
+						while (!(jogadores[k]->Morreu()))
+							jogadores[k]->reduzirVida();
+						jogadores.erase(jogadores.begin() + k);
+						k--;
+					}
+					else
+						jaColidiu = true;
+				}
+
+			}
+
+		}
+
+	}
 }
 
 void Fase::limparFase()

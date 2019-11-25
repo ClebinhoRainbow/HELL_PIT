@@ -7,7 +7,8 @@ class Jogador : public Personagem
 {
 protected:
 	int vida;
-	int atacando;
+	int controlador;
+	int flag;
 	unsigned int row;
 	float speed;
 	bool faceRight;

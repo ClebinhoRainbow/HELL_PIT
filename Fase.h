@@ -14,7 +14,6 @@
 #include "Machado_Infernal.h"
 #include "MenuPause.h"
 #include "GerenciadorGrafico.h"
-#include "Gerenciador_de_Colisoes.h"
 
 class Fase :
 	public Entidade
@@ -26,8 +25,6 @@ protected:
 	ListaPlataformas lPlataformas;
 
 	MenuPause menuPause;
-
-	Gerenciador_de_Colisoes gc;
 
 	vector<Jogador*> jogadores;
 
