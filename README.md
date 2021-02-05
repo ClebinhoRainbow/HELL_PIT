@@ -1,2 +1,2 @@
 # HELL_PIT
-Jogo de Plataforma 2 d usando 
+Jogo de Plataforma 2d usando biblioteca sdl2 
